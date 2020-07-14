@@ -4,9 +4,9 @@ import Map from '../../components/Map'
 export default function Home() {
 
     return (
-        <div>
-            Home
-            <Map/>
+        <div style={{width: "100%", 
+                    height: "500px"}}>
+             <Map/>
         </div>
     )
 }
