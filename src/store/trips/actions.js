@@ -9,6 +9,8 @@ import {
 
 export const STORE_NEW_TRIP = "STORE_NEW_TRIP";
 export const STORE_TRIPS = "STORE_TRIPS";
+export const CLEAR_TRIPS = "CLEAR_TRIPS";
+
 
 const storeNewTrip = tripData => {
     return {
@@ -19,28 +21,30 @@ const storeNewTrip = tripData => {
 
 const storeTrips = tripsData => {
     return {
-        type: "STORE_NEW_TRIP",
+        type: "STORE_TRIPS",
         payload: tripsData
     }
 }
 
+export const clearTrips = () => {
+    return {
+        type: "CLEAR_TRIPS",
+        payload: []
+    }
+}
 export const fetchTrips = (userId) => {
     return async (dispatch, getState) => {
 
-        //dispatch(appLoading());
         try {
             const response = await axios.get(`${apiUrl}/trips/${userId}`)
-
             dispatch(storeTrips(response.data))
 
-            //dispatch(appDoneLoading());
         } catch (error) {
             if (error.response) {
                 console.log(error.response.message);
             } else {
                 console.log(error);
             }
-            // dispatch(appDoneLoading());
         }
     };
 };
@@ -50,7 +54,6 @@ export const fetchTrips = (userId) => {
 export const createTrip = (destinationCountry, startDate, endDate, budget) => {
     return async (dispatch, getState) => {
         const userId = selectUser(getState()).id;
-        console.log("TEST:", userId, destinationCountry, startDate, endDate, budget)
 
         dispatch(appLoading());
         try {
@@ -58,8 +61,8 @@ export const createTrip = (destinationCountry, startDate, endDate, budget) => {
                 { userId, destinationCountry, startDate, endDate, budget },
             );
 
-            dispatch(storeNewTrip(response.data))
 
+            dispatch(storeNewTrip(response.data))
             dispatch(appDoneLoading());
         } catch (error) {
             if (error.response) {

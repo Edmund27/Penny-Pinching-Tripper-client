@@ -1,19 +1,26 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import Map from '../../components/Map'
 import LocateMe from '../../components/LocateMe'
 import NewTripForm from '../../components/NewTripForm'
 import { selectTrips } from "../../store/trips/selectors";
+import { fetchTrips } from "../../store/trips/actions";
+import { selectUser } from "../../store/user/selectors";
 import { Col, Container, Row } from "react-bootstrap";
 
 
 export default function Home() {
+  const dispatch = useDispatch();
   const [openTripForm, setOpenTripForm] = useState(false);
   const trips = useSelector(selectTrips);
+  const userId = useSelector(selectUser).id
 
-
-  console.log("TRIPS", trips)
+  useEffect(() => {
+    if (userId) {
+      dispatch(fetchTrips(userId));
+    }
+  }, [userId, dispatch]);
 
   const tripFormToggle =
     openTripForm
@@ -49,7 +56,6 @@ export default function Home() {
             {trips.length && trips.map((trip, i) => {
               const startDateArray = trip.startDate.split(/[ T.:|]+/)
               const endDateArray = trip.endDate.split(/[ T.:|]+/)
-              console.log("START DATE ARRAY", startDateArray)
               return (
                 <Col xs={5} key={i} className="box">
                   <Link to={`/home/${trip.id}`}>

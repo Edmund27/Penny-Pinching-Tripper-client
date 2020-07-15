@@ -51,7 +51,7 @@ function App() {
       <MessageBox />
       {isLoading ? <Loading /> : null}
       <Switch>
-        <Route exact path="/" component={Home} />
+        <Route path="/home" component={Home} />
         <Route path="/home/:id" component={TripPage} />
         <Route path="/userpage" component={UserPage} />
         <Route path="/convertor" component={Convertor} />
