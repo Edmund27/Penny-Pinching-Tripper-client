@@ -7,6 +7,7 @@ import {
   showMessageWithTimeout,
   setMessage
 } from "../appState/actions";
+import { fetchTrips } from "../trips/actions";
 
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const TOKEN_STILL_VALID = "TOKEN_STILL_VALID";
@@ -95,6 +96,8 @@ export const getUserWithStoredToken = () => {
 
       // token is still valid
       dispatch(tokenStillValid(response.data));
+      console.log("RESPONSE", response.data)
+      dispatch(fetchTrips(response.data.id))
       dispatch(appDoneLoading());
     } catch (error) {
       if (error.response) {
