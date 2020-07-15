@@ -10,7 +10,7 @@ import LoggedOut from "./LoggedOut";
 
 export default function Navigation() {
   const token = useSelector(selectToken);
-
+  //console.log()
   const loginLogoutControls = token ? <LoggedIn /> : <LoggedOut />;
 
   return (
