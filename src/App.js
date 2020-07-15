@@ -9,6 +9,7 @@ import MessageBox from "./components/MessageBox";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
+import TripPage from "./pages/TripPage";
 import UserPage from "./pages/UserPage";
 import Convertor from "./pages/Convertor";
 
@@ -50,7 +51,8 @@ function App() {
       <MessageBox />
       {isLoading ? <Loading /> : null}
       <Switch>
-        <Route exact path="/" component={Home} />
+        <Route path="/home" component={Home} />
+        <Route path="/home/:id" component={TripPage} />
         <Route path="/userpage" component={UserPage} />
         <Route path="/convertor" component={Convertor} />
         <Route path="/other" component={Other} />
