@@ -17,12 +17,11 @@ export default function SignUp() {
 
   useEffect(() => {
     if (token !== null) {
-      history.push("/");
+      history.push("/home");
     }
   }, [token, history]);
 
   function submitForm(event) {
-    console.log("hi");
     event.preventDefault();
 
     dispatch(login(email, password));

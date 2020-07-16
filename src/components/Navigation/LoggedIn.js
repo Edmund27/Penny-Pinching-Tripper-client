@@ -11,7 +11,7 @@ export default function LoggedIn() {
   const user = useSelector(selectUser);
   return (
     <>
-      <NavbarItem path="/" linkText="Home" />
+      <NavbarItem path="/home" linkText="Home" />
       <NavbarItem path="/userpage" linkText="User Page" />
       <NavbarItem path="/convertor" linkText="Convertor" />
       <Nav.Item style={{ padding: ".5rem 1rem" }}>{user.email}</Nav.Item>
