@@ -10,6 +10,7 @@ import {
   selectCurrencyList,
 } from "../../store/currencyConverter/selectors";
 import CurrencyRow from "./CurrencyRow";
+import CurrencyRow2 from "./CurrencyRow2";
 
 //BASED FUNCTIONALITY ON
 //https://github.com/WebDevSimplified/React-Currency-Converter
@@ -17,7 +18,6 @@ import CurrencyRow from "./CurrencyRow";
 
 export default function CurrencyConverter() {
   const dispatch = useDispatch();
-  // const [currencyOptions, setCurrencyOptions] = useState([]);
   let currencies = useSelector(selectCurrencyList);
   const rates = useSelector(selectExchangeRates);
   const [fromCurrency, setFromCurrency] = useState();
@@ -28,17 +28,14 @@ export default function CurrencyConverter() {
 
   let toAmount, fromAmount;
   if (amountInFromCurrency) {
-    console.log("exchange rate", exchangeRate);
+    // console.log("exchange rate", exchangeRate);
     fromAmount = amount;
     toAmount = amount * exchangeRate;
   } else {
-    console.log("2ND exchange rate", exchangeRate);
+    // console.log("2ND exchange rate", exchangeRate);
     toAmount = amount;
     fromAmount = amount / exchangeRate;
   }
-
-  console.log("what is currencies", currencies);
-  // console.log("what is currencyOptions", currencyOptions);
 
   useEffect(() => {
     dispatch(fetchCurrencies("EUR"));
@@ -82,7 +79,7 @@ export default function CurrencyConverter() {
         </Form.Group>
         {"=>"}
         <Form.Group controlId="formCurrencyConverter.ControlSelect2">
-          <CurrencyRow
+          <CurrencyRow2
             currencies={currencies}
             selectedCurrency={toCurrency}
             onChangeCurrency={(e) => setToCurrency(e.target.value)}

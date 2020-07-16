@@ -23,14 +23,9 @@ export const fetchCurrencies = (fromCurrency) => async (dispatch, getState) => {
   try {
     const response = await axios.get(currencies);
 
-    const currencyList = [
-      response.data.base,
-      ...Object.keys(response.data.rates),
-    ];
+    response.data.rates[fromCurrency] = 1.0;
 
-    let unique = [...new Set(currencyList)];
-
-    const sortedCurrencyList = [...unique].sort();
+    const sortedCurrencyList = [...Object.keys(response.data.rates)].sort();
 
     dispatch(saveCurrencies(response.data, sortedCurrencyList));
   } catch (error) {
