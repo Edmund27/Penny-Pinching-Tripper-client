@@ -1,5 +1,5 @@
 const initialState = {
-    currentPosition: {latitude: 0, longitude: 0}
+    currentPosition: {latitude: null, longitude: null}
     };
 
 export default (state = initialState, action) => {
