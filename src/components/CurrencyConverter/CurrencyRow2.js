@@ -1,4 +1,5 @@
 import React from "react";
+import "./CurrencyRow2.css";
 
 //COPIED FROM
 //https://github.com/WebDevSimplified/React-Currency-Converter
@@ -21,9 +22,9 @@ export default function CurrencyRow2(props) {
         className="input"
         value={amount}
         onChange={onChangeAmount}
-        disabled
       />
       <select
+        className="select"
         value={selectedCurrency}
         onChange={onChangeCurrency}
         defaultValue={currencies}

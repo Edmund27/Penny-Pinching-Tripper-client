@@ -1,0 +1,18 @@
+.input {
+  border: 2px solid #333;
+  border-radius: 0.3em;
+  padding: 0.25rem;
+  width: 7em;
+}
+
+.select {
+  background-color: white;
+  margin-left: 0.5rem;
+  border: 2px solid #333;
+  border-radius: 0.3em;
+  padding: 0.25rem;
+}
+
+.arrow {
+  font-size: 2rem;
+}

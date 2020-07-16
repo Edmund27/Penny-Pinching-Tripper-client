@@ -19,7 +19,6 @@ import { getUserWithStoredToken } from "./store/user/actions";
 import { Jumbotron } from "react-bootstrap";
 import { selectToken } from "./store/user/selectors";
 
-
 const Other = () => (
   <Jumbotron>
     <h1>Other</h1>
@@ -32,8 +31,6 @@ function App() {
   const isLoading = useSelector(selectAppLoading);
   const token = useSelector(selectToken);
 
-
-
   useEffect(() => {
     dispatch(getUserWithStoredToken());
   }, [dispatch]);
@@ -43,7 +40,6 @@ function App() {
       history.push("/login");
     }
   }, [token, history]);
-
 
   return (
     <div className="App">
