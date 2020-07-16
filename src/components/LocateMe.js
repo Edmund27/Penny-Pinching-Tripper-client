@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch } from "react-redux";
 import { storePosition } from '../store/appFeed/actions'
-
+import { Button } from 'react-bootstrap'
 
 export default function LocateMe() {
     const dispatch = useDispatch()
@@ -20,7 +20,7 @@ export default function LocateMe() {
     
     return (
         <div>
-            <button onClick={getLocation}> Get Location</button>
+            <Button onClick={getLocation}> Get Location</Button>
         </div>
     )
 }
