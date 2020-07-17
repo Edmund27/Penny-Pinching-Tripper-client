@@ -1,10 +1,11 @@
 import React from "react";
+import "./CurrencyRow2.css";
 
 //COPIED FROM
 //https://github.com/WebDevSimplified/React-Currency-Converter
 //WIP
 
-export default function CurrencyRow(props) {
+export default function CurrencyRow2(props) {
   let {
     currencies,
     selectedCurrency,
@@ -23,6 +24,7 @@ export default function CurrencyRow(props) {
         onChange={onChangeAmount}
       />
       <select
+        className="select"
         value={selectedCurrency}
         onChange={onChangeCurrency}
         defaultValue={currencies}

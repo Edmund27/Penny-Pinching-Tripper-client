@@ -1,65 +1,56 @@
 import React, { useState, useEffect } from "react";
 import { Row, Form, Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  fetchCurrencies,
-  fetchLatestExchangeRate,
-} from "../../store/currencyConverter/actions";
+import { fetchCurrencies } from "../../store/currencyConverter/actions";
 import {
   selectExchangeRates,
   selectCurrencyList,
 } from "../../store/currencyConverter/selectors";
-import CurrencyRow from "./CurrencyRow";
+import CurrencyRow2 from "./CurrencyRow2";
 
 //BASED FUNCTIONALITY ON
 //https://github.com/WebDevSimplified/React-Currency-Converter
-//WIP
 
 export default function CurrencyConverter() {
   const dispatch = useDispatch();
-  // const [currencyOptions, setCurrencyOptions] = useState([]);
   let currencies = useSelector(selectCurrencyList);
   const rates = useSelector(selectExchangeRates);
   const [fromCurrency, setFromCurrency] = useState();
   const [toCurrency, setToCurrency] = useState();
-  const [exchangeRate, setExchangeRate] = useState(1);
   const [amount, setAmount] = useState(1);
   const [amountInFromCurrency, setAmountInFromCurrency] = useState(true);
+  const [isDisabled, setDisabled] = useState(false);
 
   let toAmount, fromAmount;
-  if (amountInFromCurrency) {
-    console.log("exchange rate", exchangeRate);
-    fromAmount = amount;
-    toAmount = amount * exchangeRate;
-  } else {
-    console.log("2ND exchange rate", exchangeRate);
-    toAmount = amount;
-    fromAmount = amount / exchangeRate;
-  }
 
-  console.log("what is currencies", currencies);
-  // console.log("what is currencyOptions", currencyOptions);
+  if (rates && rates.base && fromCurrency === rates.base) {
+    if (amountInFromCurrency) {
+      fromAmount = amount;
+      toAmount = amount * rates.rates[toCurrency];
+    } else {
+      toAmount = amount;
+      fromAmount = amount / rates.rates[toCurrency];
+    }
+  }
 
   useEffect(() => {
     dispatch(fetchCurrencies("EUR"));
   }, []);
 
   useEffect(() => {
-    if (fromCurrency != null && toCurrency != null) {
+    if (rates && fromCurrency !== null && toCurrency !== null) {
       dispatch(fetchCurrencies(fromCurrency));
-
-      setExchangeRate(rates.rates[toCurrency]);
-    } else {
-      setExchangeRate(1);
     }
   }, [fromCurrency, toCurrency]);
 
   function handleFromAmountChange(e) {
+    // convert FROM to TO
     setAmount(e.target.value);
     setAmountInFromCurrency(true);
   }
 
   function handleToAmountChange(e) {
+    // Convert TO to FROM
     setAmount(e.target.value);
     setAmountInFromCurrency(false);
   }
@@ -72,22 +63,28 @@ export default function CurrencyConverter() {
     <Container>
       <Form as={Row} md={{ span: 1, offset: 0 }} className="mt-1 form-inline">
         <Form.Group controlId="formCurrencyConverter.ControlSelect1">
-          <CurrencyRow
+          <CurrencyRow2
             currencies={currencies}
             selectedCurrency={fromCurrency}
             onChangeCurrency={(e) => setFromCurrency(e.target.value)}
             onChangeAmount={handleFromAmountChange}
-            amount={fromAmount}
+            amount={Number(fromAmount)}
+            isDisabled={isDisabled}
           />
         </Form.Group>
-        {"=>"}
+        {amountInFromCurrency ? (
+          <div className="arrow">&#8594;</div>
+        ) : (
+          <div className="arrow">&#8592;</div>
+        )}
         <Form.Group controlId="formCurrencyConverter.ControlSelect2">
-          <CurrencyRow
+          <CurrencyRow2
             currencies={currencies}
             selectedCurrency={toCurrency}
             onChangeCurrency={(e) => setToCurrency(e.target.value)}
             onChangeAmount={handleToAmountChange}
-            amount={toAmount}
+            amount={Number(toAmount)}
+            isDisabled={isDisabled}
           />
         </Form.Group>
       </Form>
