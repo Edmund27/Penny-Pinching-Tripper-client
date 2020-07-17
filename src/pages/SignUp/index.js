@@ -7,14 +7,19 @@ import { selectToken } from "../../store/user/selectors";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, Link } from "react-router-dom";
 import { Col } from "react-bootstrap";
+import csc from 'country-state-city'
 
 export default function SignUp() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  //const [, setPassword] = useState("");
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
   const history = useHistory();
+  const [countryId, setCountryId] = useState();
+  const [stateId, setStateId] = useState();
+  const [cityName, setCityName] = useState("");
 
   useEffect(() => {
     if (token !== null) {
@@ -25,12 +30,50 @@ export default function SignUp() {
   function submitForm(event) {
     event.preventDefault();
 
-    dispatch(signUp(name, email, password));
+    const countryName = csc.getCountryById(countryId).name
+
+    dispatch(signUp(name, email, password, cityName, countryName));
 
     setEmail("");
     setPassword("");
     setName("");
+    setCountryId(null)
+    setStateId(null)
+    setCityName('')
   }
+
+  const selectCity =
+
+    <Form.Group>
+      <Form.Label>Your Location</Form.Label>
+      <Form.Control as="select" onChange={(event) => setCountryId(event.target.value)} >
+        <option >Select Country</option>
+        {csc.getAllCountries().map((country) => {
+          return (
+            <option key={country.id} value={country.id}>{country.name}</option>
+          )
+        })}
+      </Form.Control>
+      {countryId &&
+        <Form.Control as="select" name="state" className="states order-alpha" id="stateId" onChange={(event) => setStateId(event.target.value)}>
+          <option >Select State</option>
+          {csc.getStatesOfCountry(countryId).map((state) => {
+            return (
+              <option key={state.id} value={state.id}>{state.name}</option>
+            )
+          })}
+        </Form.Control>}
+      {stateId && <Form.Control as="select" name="city" className="cities order-alpha" id="cityId" onChange={(event) => setCityName(event.target.value)}>
+        <option >Select City</option>
+        {csc.getCitiesOfState(stateId).map((city) => {
+          return (
+            <option key={city.id} value={city.name}>{city.name}</option>
+          )
+        })}
+      </Form.Control>}
+
+    </Form.Group >
+
 
   return (
     <Container>
@@ -70,12 +113,14 @@ export default function SignUp() {
             required
           />
         </Form.Group>
+        {selectCity}
         <Form.Group className="mt-5">
           <Button variant="primary" type="submit" onClick={submitForm}>
             Sign up
           </Button>
         </Form.Group>
         <Link to="/login">Click here to log in</Link>
+
       </Form>
     </Container>
   );

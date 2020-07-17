@@ -5,7 +5,7 @@ export default function UserPage() {
 
     return (
         <div>
-            UserPage
+            UserPage in development...
         </div>
     )
 }

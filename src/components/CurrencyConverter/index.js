@@ -19,7 +19,7 @@ export default function CurrencyConverter() {
   const [toCurrency, setToCurrency] = useState();
   const [amount, setAmount] = useState(1);
   const [amountInFromCurrency, setAmountInFromCurrency] = useState(true);
-  const [isDisabled, setDisabled] = useState(false);
+  //const [isDisabled, setDisabled] = useState(false);
 
   let toAmount, fromAmount;
 
@@ -35,13 +35,13 @@ export default function CurrencyConverter() {
 
   useEffect(() => {
     dispatch(fetchCurrencies("EUR"));
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     if (rates && fromCurrency !== null && toCurrency !== null) {
       dispatch(fetchCurrencies(fromCurrency));
     }
-  }, [fromCurrency, toCurrency]);
+  }, [fromCurrency, toCurrency, dispatch, rates]);
 
   function handleFromAmountChange(e) {
     // convert FROM to TO
@@ -69,14 +69,14 @@ export default function CurrencyConverter() {
             onChangeCurrency={(e) => setFromCurrency(e.target.value)}
             onChangeAmount={handleFromAmountChange}
             amount={Number(fromAmount)}
-            isDisabled={isDisabled}
+          //isDisabled={isDisabled}
           />
         </Form.Group>
         {amountInFromCurrency ? (
           <div className="arrow">&#8594;</div>
         ) : (
-          <div className="arrow">&#8592;</div>
-        )}
+            <div className="arrow">&#8592;</div>
+          )}
         <Form.Group controlId="formCurrencyConverter.ControlSelect2">
           <CurrencyRow2
             currencies={currencies}
@@ -84,7 +84,7 @@ export default function CurrencyConverter() {
             onChangeCurrency={(e) => setToCurrency(e.target.value)}
             onChangeAmount={handleToAmountChange}
             amount={Number(toAmount)}
-            isDisabled={isDisabled}
+          //isDisabled={isDisabled}
           />
         </Form.Group>
       </Form>
