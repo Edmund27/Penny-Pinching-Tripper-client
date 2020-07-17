@@ -8,6 +8,8 @@ import { selectTrips } from "../../store/trips/selectors";
 import { fetchTrips } from "../../store/trips/actions";
 import { selectUser } from "../../store/user/selectors";
 import { Col, Container, Row } from "react-bootstrap";
+import CurrencyConverter from "../../components/CurrencyConverter/index";
+
 
 
 export default function Home() {
@@ -47,9 +49,7 @@ export default function Home() {
 
   return (
     <div>
-      <div>
-        {tripFormToggle}
-      </div>
+      <CurrencyConverter />
       <div>
         <Container>
           <Row>
@@ -62,7 +62,7 @@ export default function Home() {
                     <div className="card text-dark">
                       <div className="card-body">
                         <h5 className="card-text">
-                          {`Trip to ${trip.destinationCountry}`}
+                          {`Trip to ${trip.destinationCity}, ${trip.destinationCountry}`}
                         </h5>
                       </div>
                     </div>
@@ -81,6 +81,9 @@ export default function Home() {
             })}
           </Row>
         </Container>
+      </div>
+      <div>
+        {tripFormToggle}
       </div>
       <div style={{
         width: "100%",

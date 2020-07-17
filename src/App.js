@@ -11,19 +11,12 @@ import Login from "./pages/Login";
 import Home from "./pages/Home";
 import TripPage from "./pages/TripPage";
 import UserPage from "./pages/UserPage";
-import Convertor from "./pages/Convertor";
 
 import { useDispatch, useSelector } from "react-redux";
 import { selectAppLoading } from "./store/appState/selectors";
 import { getUserWithStoredToken } from "./store/user/actions";
-import { Jumbotron } from "react-bootstrap";
 import { selectToken } from "./store/user/selectors";
 
-const Other = () => (
-  <Jumbotron>
-    <h1>Other</h1>
-  </Jumbotron>
-);
 
 function App() {
   const dispatch = useDispatch();
@@ -47,11 +40,9 @@ function App() {
       <MessageBox />
       {isLoading ? <Loading /> : null}
       <Switch>
-        <Route path="/home" component={Home} />
+        <Route exact path="/home" component={Home} />
         <Route path="/home/:id" component={TripPage} />
         <Route path="/userpage" component={UserPage} />
-        <Route path="/convertor" component={Convertor} />
-        <Route path="/other" component={Other} />
         <Route path="/signup" component={SignUp} />
         <Route path="/login" component={Login} />
       </Switch>

@@ -51,14 +51,13 @@ export const fetchTrips = (userId) => {
 
 
 
-export const createTrip = (destinationCountry, startDate, endDate, budget) => {
+export const createTrip = (destinationCountry, destinationCity, startDate, endDate, budget) => {
     return async (dispatch, getState) => {
         const userId = selectUser(getState()).id;
-
         dispatch(appLoading());
         try {
             const response = await axios.post(`${apiUrl}/trips`,
-                { userId, destinationCountry, startDate, endDate, budget },
+                { userId, destinationCountry, destinationCity, startDate, endDate, budget },
             );
 
 
