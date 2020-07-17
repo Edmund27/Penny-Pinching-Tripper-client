@@ -13,8 +13,12 @@ export default function TripPage() {
     const trip = useSelector(selectTripById(tripId))
     const userId = useSelector(selectUser).id
 
-    dispatch(fetchTrips(userId))
-
+    useEffect(() => {
+        if (userId) {
+          dispatch(fetchTrips(userId));
+        }
+      }, [userId, dispatch]);
+    
     if(!trip){
         return <>{"Loading"}</>
     } else {
