@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-import Map from '../../components/Map'
-import LocateMe from '../../components/LocateMe'
+import { useHistory } from "react-router-dom";
+// import Map from '../../components/Map'
+// import LocateMe from '../../components/LocateMe'
 import NewTripForm from '../../components/NewTripForm'
 import { selectTrips } from "../../store/trips/selectors";
 import { fetchTrips } from "../../store/trips/actions";
 import { selectUser } from "../../store/user/selectors";
-import { Col, Container, Row } from "react-bootstrap";
-import CurrencyConverter from "../../components/CurrencyConverter/index";
+import { Col, Container, Row, Card, Button, Jumbotron } from "react-bootstrap";
+// import CurrencyConverter from "../../components/CurrencyConverter/index";
 
 
 
@@ -17,12 +17,20 @@ export default function Home() {
   const [openTripForm, setOpenTripForm] = useState(false);
   const trips = useSelector(selectTrips);
   const userId = useSelector(selectUser).id
+  const history = useHistory()
 
   useEffect(() => {
     if (userId) {
       dispatch(fetchTrips(userId));
     }
   }, [userId, dispatch]);
+
+  const openTrip = (id) => {
+    history.push(`/home/${id}`)
+  }
+
+
+
 
   const tripFormToggle =
     openTripForm
@@ -36,7 +44,7 @@ export default function Home() {
         </button>
         <NewTripForm />
       </div>
-      : <div>
+      : <div >
         <button
           onClick={() => setOpenTripForm(true)}
           type="button"
@@ -47,18 +55,38 @@ export default function Home() {
       </div>
 
 
+
+
   return (
-    <div>
-      <CurrencyConverter />
+    <Container >
       <div>
-        <Container>
-          <Row>
-            {trips.length && trips.map((trip, i) => {
-              const startDateArray = trip.startDate.split(/[ T.:|]+/)
-              const endDateArray = trip.endDate.split(/[ T.:|]+/)
-              return (
-                <Col xs={5} key={i} className="box">
-                  <Link to={`/home/${trip.id}`}>
+
+        {tripFormToggle}
+      </div>
+
+      <Row >
+        {trips.length && trips.map((trip, i) => {
+          const startDateArray = trip.startDate.split(/[ T.:|]+/)
+          const endDateArray = trip.endDate.split(/[ T.:|]+/)
+          return (
+            <Col xs={4} key={i} className="box">
+              <Jumbotron>
+                <h1>{trip.destinationCity}, {trip.destinationCountry}</h1>
+                <p>
+                  {startDateArray[0]} - {endDateArray[0]}
+                </p>
+                <p>
+                  <Button variant="primary" action onClick={() => openTrip(trip.id)}>Open trip</Button>
+                </p>
+              </Jumbotron>
+              {/* <Card >
+                <Card.Header>{trip.destinationCity}, {trip.destinationCountry}</Card.Header>
+                <Card.Body>
+                  <Card.Title>{startDateArray[0]} - {endDateArray[0]}</Card.Title>
+                  <Button variant="primary" action onClick={() => openTrip(trip.id)}>Open trip</Button>
+                </Card.Body>
+              </Card> */}
+              {/* <Link to={`/home/${trip.id}`}>
                     <div className="card text-dark">
                       <div className="card-body">
                         <h5 className="card-text">
@@ -75,23 +103,11 @@ export default function Home() {
                   </p>
                   <p>
                     {`your budget ${trip.budget}`}
-                  </p>
-                </Col>
-              );
-            })}
-          </Row>
-        </Container>
-      </div>
-      <div>
-        {tripFormToggle}
-      </div>
-      <div style={{
-        width: "100%",
-        height: "500px"
-      }}>
-        <Map />
-      </div>
-      <LocateMe />
-    </div>
+                  </p> */}
+            </Col>
+          );
+        })}
+      </Row>
+    </Container>
   )
 }
