@@ -15,7 +15,7 @@ export default function CurrencyRow2(props) {
   } = props;
 
   return (
-    <div>
+    <div >
       <input
         type="number"
         min="1"

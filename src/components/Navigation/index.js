@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
+import Image from "react-bootstrap/Nav";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectToken } from "../../store/user/selectors";
@@ -13,7 +14,12 @@ export default function Navigation() {
 
   return (
     <Navbar bg="light" expand="lg">
-      <Navbar.Brand as={NavLink} to="/">
+      <img
+        src="https://www.nicepng.com/png/full/299-2995376_travel-icons-transparent-background.png"
+        width="100"
+        height="100"
+      ></img>
+      <Navbar.Brand as={NavLink} to="/home">
         Penny Pinching Tripper
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
