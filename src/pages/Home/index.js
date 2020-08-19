@@ -6,6 +6,7 @@ import { useHistory } from "react-router-dom";
 import NewTripForm from '../../components/NewTripForm'
 import { selectTrips } from "../../store/trips/selectors";
 import { fetchTrips } from "../../store/trips/actions";
+import { setCurrentTrip } from "../../store/appFeed/actions";
 import { selectUser } from "../../store/user/selectors";
 import { Col, Container, Row, Card, Button, Jumbotron } from "react-bootstrap";
 // import CurrencyConverter from "../../components/CurrencyConverter/index";
@@ -25,7 +26,8 @@ export default function Home() {
     }
   }, [userId, dispatch]);
 
-  const openTrip = (id) => {
+  const openTrip = (id, city, country) => {
+    dispatch(setCurrentTrip(city, country))
     history.push(`/home/${id}`)
   }
 
@@ -76,7 +78,7 @@ export default function Home() {
                   {startDateArray[0]} - {endDateArray[0]}
                 </p>
                 <p>
-                  <Button variant="primary" action onClick={() => openTrip(trip.id)}>Open trip</Button>
+                  <Button variant="primary" action onClick={() => openTrip(trip.id, trip.destinationCity, trip.destinationCountry)}>Open trip</Button>
                 </p>
               </Jumbotron>
               {/* <Card >
