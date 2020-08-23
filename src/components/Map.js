@@ -28,11 +28,18 @@ export default function HomePageMap(props) {
             />
             {props.coordinates && props.businesses.businesses.map((business, id) => (
                 console.log(business.coordinates.latitude, business.coordinates.longitude),
-                (business.coordinates.longitude & business.coordinates.latitude) && <Marker position={[business.coordinates.latitude, business.coordinates.longitude]} />
-                //     <Popup>
-                //         <span>A pretty CSS3 popup. <br /> Easily customizable.</span>
-                //     </Popup>
-                // </Marker>
+                (business.coordinates.longitude & business.coordinates.latitude) && <Marker position={[business.coordinates.latitude, business.coordinates.longitude]} >
+                    <Popup>
+                        <span>
+                            <strong>{business.name}</strong>
+                            {/* <p>{business.is_closed ? "is opened" : "is closed"}</p>
+                            <p>rating: {business.rating}</p> */}
+                            <br /> {business.is_closed ? "is opened" : "is closed"}
+                            <br /> rating: <strong>{business.rating}</strong>
+                            <br /> <img src={business.image_url} width="150" height="150"></img>
+                        </span>
+                    </Popup>
+                </Marker>
             )
             )}
             {/* <Marker

@@ -23,7 +23,7 @@ export default function LoggedIn() {
     <>
 
       <NavbarItem path="/home" linkText="Home" />
-      <NavbarItem path="/userpage" linkText="User Page" />
+      {/* <NavbarItem path="/userpage" linkText="User Page" /> */}
       <Nav.Item ><CurrencyConverter /></Nav.Item>
       <Button onClick={() => dispatch(logOut())}>Logout</Button>
     </>
