@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 
@@ -12,15 +12,17 @@ import { fetchBusinesses } from "../../store/appFeed/actions";
 
 export default function TripPage() {
     const dispatch = useDispatch();
-    const [businessType, setBusinessType] = useState('');
-    const [priceCategory, setPriceCategory] = useState('');
+    const [businessType, setBusinessType] = useState('restaurants');
+    const [priceCategory, setPriceCategory] = useState(1);
     const { id } = useParams();
     //const tripData = useSelector(selectCurrentTrip);
     const trips = useSelector(selectTrips);
-    console.log("TRIPS", trips, "ANTONIA.CANDY")
+    //console.log("TRIPS", trips, "ANTONIA.CANDY")
     const currentTrip = trips.find(trip => trip.id == id);
 
-
+    useEffect(() => {
+        dispatch(fetchBusinesses(currentTrip.destinationCity, businessType, priceCategory))
+    }, []);
 
     const businesses = useSelector(selectBusinesses);
     // businesses && const tripCoordinates = useSelector(selectTripCoordinates);

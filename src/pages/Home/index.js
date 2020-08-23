@@ -42,7 +42,7 @@ export default function Home() {
           type="button"
           className="btn btn-primary btn-circle btn-md"
         >
-          <strong style={{ fontSize: "2em" }}>Close form</strong>
+          <strong style={{ fontSize: "2em" }}>-</strong>
         </button>
         <NewTripForm />
       </div>
@@ -52,7 +52,7 @@ export default function Home() {
           type="button"
           className="btn btn-primary btn-circle btn-md"
         >
-          <strong style={{ fontSize: "2em" }}>Add New Trip</strong>
+          <strong style={{ fontSize: "2em" }}>+</strong>
         </button>
       </div>
 
