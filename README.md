@@ -1,6 +1,11 @@
-# Frontend template
+## Introduction
+Hello! This is a the one and only necessary app that a budget traveller needs when travelling the world. You could be about anywhere in the world and the Penny Pinching Tripper, using the newest technologies and up to date external APIs, will help you find the cheapest restaurants or hotels. If that is still not enough, the PPT also contains a hand made light-speed currency converter. So don't hesitate and try it now!
 
-This is a simple react/redux/jwt template to start a project quickly
+Click on the link below and either make an account on your own or try our tester log in details
+- email: test
+- password: test
+
+- The deployed version can be found [here](https://penny-pinching-tripper.netlify.app/)
 
 ## Table of contents:
 
