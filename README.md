@@ -7,6 +7,7 @@ Click on the link below and either make an account on your own or try our tester
 
 - The deployed version can be found [here](https://penny-pinching-tripper.netlify.app/)
 
+
 ### App Preview
 
 Home Screen:
@@ -24,3 +25,28 @@ Trip Page:
 - map displaying restaurants/hotels in the selected trip city based on user's preferences
 
 <img src="/attachments/Trip-Page.png">
+
+
+### Technologies Used
+
+- React
+- React-Leaflet
+- React Bootstrap
+- Redux
+- Express
+- Rest API
+- Sequelize
+- PostgreSQL
+
+
+### Goals of the project
+
+- Practiced full-stack development in a group setting (done short term by 3 people)
+- Practiced use of github, branching, merging and so on as each group member was working on his own part of the app
+- Usage of what we learned at the Codaisseur academy (react, redux, sequelize, express, Rest API, etc.)
+- Practiced working with two external APIs
+
+
+### Backend Repository
+
+For the backend side of the project [Click here](https://github.com/Luc-Govaarts/Penny-Pinching-Tripper-server)
