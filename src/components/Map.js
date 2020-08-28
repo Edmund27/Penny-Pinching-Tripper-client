@@ -26,7 +26,6 @@ export default function HomePageMap(props) {
                     contributors'
             />
             {props.coordinates && props.businesses.businesses.map((business, id) => (
-                console.log(business.coordinates.latitude, business.coordinates.longitude),
                 (business.coordinates.longitude & business.coordinates.latitude) && <Marker position={[business.coordinates.latitude, business.coordinates.longitude]} >
                     <Popup>
                         <span>

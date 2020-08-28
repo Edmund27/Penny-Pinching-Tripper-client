@@ -120,22 +120,22 @@ export default function Home() {
           const endDateArray = trip.endDate.split(/[ T.:|]+/)
           return (
             <Col xs={4} key={i} className="mt-4">
-              <a style={{ cursor: 'pointer' }} onClick={() => openTrip(trip.id, trip.destinationCity, trip.destinationCountry)}>
-                <Card
-                  className="text-center"
-                  bg="info"
-                  border="info"
-                  style={{ opacity: '.7' }}
-                >
-                  <Card.Body>
-                    <Card.Title >Trip to {trip.destinationCity}</Card.Title>
-                    <Card.Text >
-                      {startDateArray[0]} - {endDateArray[0]}
-                    </Card.Text>
-                    <Button variant="outline-dark" action onClick={() => openTrip(trip.id, trip.destinationCity, trip.destinationCountry)}>Open trip</Button>
-                  </Card.Body>
-                </Card>
-              </a>
+              {/* <a href={`/${trip.id}`} style={{ cursor: 'pointer' }} onClick={() => openTrip(trip.id, trip.destinationCity, trip.destinationCountry)}> */}
+              <Card
+                className="text-center"
+                bg="info"
+                border="info"
+                style={{ opacity: '.7' }}
+              >
+                <Card.Body>
+                  <Card.Title >Trip to {trip.destinationCity}</Card.Title>
+                  <Card.Text >
+                    {startDateArray[0]} - {endDateArray[0]}
+                  </Card.Text>
+                  <Button variant="outline-dark" action onClick={() => openTrip(trip.id, trip.destinationCity, trip.destinationCountry)}>Open trip</Button>
+                </Card.Body>
+              </Card>
+              {/* </a> */}
               {/* <Card >
                 <Card.Header>{trip.destinationCity}, {trip.destinationCountry}</Card.Header>
                 <Card.Body>
