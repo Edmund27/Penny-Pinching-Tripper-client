@@ -115,7 +115,7 @@ export default function SignUp() {
         </Form.Group>
         {selectCity}
         <Form.Group className="mt-5">
-          <Button variant="primary" type="submit" onClick={submitForm}>
+          <Button variant="info" type="submit" onClick={submitForm}>
             Sign up
           </Button>
         </Form.Group>
