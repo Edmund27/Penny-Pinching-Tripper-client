@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { createTrip } from "../store/trips/actions";
 import csc from 'country-state-city'
 
-export default function NewTripForm() {
+export default function NewTripForm(props) {
   //const [destination, setDestination] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
@@ -64,20 +64,69 @@ export default function NewTripForm() {
 
 
   return (
-    <Container>
-      <Form as={Col} md={{ span: 3, offset: 0 }} className="mt-1">
+
+    // <Modal
+    //   show={showForm}
+    // >
+
+    //   <Modal.Body>
+    //     <Form as={Col} md={{ span: 3, offset: 0 }} className="mt-1">
+    //       {selectCity}
+    //       <Form.Group controlId="formBasicStartDate">
+    //         <Form.Label>Departure</Form.Label>
+    //         <Form.Control
+    //           value={startDate}
+    //           onChange={(event) => setStartDate(event.target.value)}
+    //           type="date"
+    //           required
+    //         />
+    //       </Form.Group>
+    //       <Form.Group controlId="formBasicEndDate">
+    //         <Form.Label>Return</Form.Label>
+    //         <Form.Control
+    //           value={endDate}
+    //           onChange={(event) => setEndDate(event.target.value)}
+    //           type="date"
+    //           required
+    //         />
+    //       </Form.Group>
+    //       <Form.Group controlId="formBasicBudget">
+    //         <Form.Label>Budget</Form.Label>
+    //         <Form.Control
+    //           value={budget}
+    //           onChange={(event) => setBudget(event.target.value)}
+    //           type="number"
+    //           min="0"
+    //           // max="100"
+    //           // step="5"
+    //           placeholder="Enter your budget"
+    //           required
+    //         />
+    //       </Form.Group>
+
+    //       {/* <Form.Group className="mt-5">
+    //         <Button variant="primary" type="submit" onClick={submitForm}>
+    //           Submit
+    //       </Button>
+    //       </Form.Group> */}
+
+    //     </Form>
+    //   </Modal.Body>
+
+    //   <Modal.Footer>
+    //     <Button variant="secondary" onClick={() => setShowForm(false)}>
+    //       Close
+    //       </Button>
+
+    //     <Button variant="primary" type="submit" onClick={submitForm}>
+    //       Submit
+    //       </Button>
+    //   </Modal.Footer>
+    // </Modal>
+
+    <Container >
+      <Form size="lg" as={Col} md={{ span: 3, offset: 0 }} className="mt-1">
         {selectCity}
-        {/* <Form.Group controlId="formBasicDestination">
-          <Form.Label>Destination</Form.Label>
-          <Form.Control
-            value={destination}
-            onChange={(event) => setDestination(event.target.value)}
-            type="text"
-            // autocomplete="off"
-            placeholder="Enter your destination"
-            required
-          /> 
-        </Form.Group>*/}
         <Form.Group controlId="formBasicStartDate">
           <Form.Label>Departure</Form.Label>
           <Form.Control
@@ -110,11 +159,16 @@ export default function NewTripForm() {
           />
         </Form.Group>
         <Form.Group className="mt-5">
-          <Button variant="primary" type="submit" onClick={submitForm}>
+          <Button variant="info" type="submit" onClick={submitForm}>
             Submit
           </Button>
         </Form.Group>
       </Form>
-    </Container >
+    </Container>
+
+
+
+
+
   );
 }

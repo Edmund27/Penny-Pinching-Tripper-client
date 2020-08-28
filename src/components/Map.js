@@ -7,7 +7,6 @@ export default function HomePageMap(props) {
     const currentPosition = useSelector(selectCurrentPosition)
     console.log(props.businesses)
     let center
-    let position
 
 
     if (props.coordinates) {
@@ -20,7 +19,7 @@ export default function HomePageMap(props) {
     //console.log("POSTIION", position)
 
     return (
-        <Map center={center} zoom={12}>
+        <Map center={center} zoom={12} >
             <TileLayer
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 attribution='&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> 
@@ -36,7 +35,7 @@ export default function HomePageMap(props) {
                             <p>rating: {business.rating}</p> */}
                             <br /> {business.is_closed ? "is opened" : "is closed"}
                             <br /> rating: <strong>{business.rating}</strong>
-                            <br /> <img src={business.image_url} width="150" height="150"></img>
+                            <br /> <img src={business.image_url} width="150" height="150" alt="map"></img>
                         </span>
                     </Popup>
                 </Marker>

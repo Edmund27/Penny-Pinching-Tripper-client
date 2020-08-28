@@ -35,7 +35,7 @@ function App() {
   }, [token, history]);
 
   return (
-    <div className="App">
+    <div className="app">
       <Navigation />
       <MessageBox />
       {isLoading ? <Loading /> : null}
